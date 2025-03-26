@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Film/movie_details.css' %}">
+    <link rel="stylesheet" href="{% static 'Film/film_card.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+<div id = "modal" class="movie-details">
+    <h1>{{ title }}</h1>
+    <div class="movie-details-header">
+        <img src="{{ cover_image }}" alt="Cover of {{ title }}">
+        <div class="movie-info">
+            <p><strong>Author:</strong> {{ author }}</p>
+            <p><strong>Published Date:</strong> {{ published_date }}</p>
+            <p><strong>Rating:</strong> {{ rating }}</p>
+            <p><strong>Description:</strong> {{ description }}</p>
+        </div>
+    </div>
+
+    <div class="similar-movies">
+        <h2>Recommended Books</h2>
+        <div class="movie-grid">
+            {% for book in recommended_books %}
+                <div class="movie-card">
+                    <a href="{% url 'book_details' book_id=book.id %}">
+                        <img src="{{ book.cover_image }}" alt="{{ book.title }}">
+                    </a>
+                    <p>{{ book.title }}</p>
+                    <p><small>{{ book.author }}</small></p>
+                </div>
+            {% endfor %}
+            {% if recommended_books|length == 0 %}
+                <p>No recommendations available at this time.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

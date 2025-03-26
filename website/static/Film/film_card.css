@@ -1,0 +1,55 @@
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.movie-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 10px;
+    border-bottom: 2px solid #444;
+}
+
+.movie-card h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #ef4765;
+    text-align: center;
+}
+
+.movie-card p {
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+}
+
+.movie-card a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+
+}
+
+/* Ensure the image inside <a> retains its styling */
+.movie-card a img {
+    display: block; /* Removes any spacing below the image */
+    border: none; /* Removes any default border (some browsers add this) */
+    width: 100%; /* Ensures image fits its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Retain rounded corners */
+}

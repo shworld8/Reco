@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Main/home.css' %}">
+    <link rel="stylesheet" href="{% static 'Film/film_card.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="Welcome_container">
+        <h1 class="Big_header">Welcome to Reco</h1>
+        <h2>Explore our collection of films, books, and AI-based recommendations!</h2>
+        <a href="{% url 'films' %}" class="btn">Browse Films</a>
+    </div>
+
+    <div class="movie-grid">
+        {% for movie in movies %}
+            <div class="movie-card">
+                <a href="{% url 'movie_details' movie_id=movie.id %}">
+                    <img src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

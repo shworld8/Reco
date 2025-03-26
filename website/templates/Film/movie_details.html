@@ -1,0 +1,58 @@
+{% extends 'main/home.html' %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Film/movie_details.css' %}">
+    <link rel="stylesheet" href="{% static 'Film/film_card.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div id = "modal" class="movie-details">
+    <h1>{{ title }}</h1>
+    <div class="movie-details-header">
+        <img src="{{ poster_path }}" alt="{{ title }}">
+        <div class="movie-info">
+            <p><strong>Release Date:</strong> {{ release_date }}</p>
+            <p><strong>Rating:</strong> {{ rating }}</p>
+            <p><strong>Director:</strong> {{ director }}</p>
+            <p><strong>Overview:</strong> {{ overview }}</p>
+            <p><strong>Actors:</strong></p>
+            <ul>
+                {% for actor in actors %}
+                    <li>{{ actor }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% if images %}
+        <div class="movie-images">
+            <h3>Images</h3>
+            <div class="image-gallery">
+                {% for image in images|slice:":3" %}
+                    <img src="{{ image }}" alt="Movie image">
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="similar-movies">
+        <h2>Recommended Movies</h2>
+        <div class="movie-grid">
+            {% for movie in similar_movies %}
+                <div class="movie-card">
+                    <a href="{% url 'movie_details' movie_id=movie.id %}">
+                        <img src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }}">
+                    </a>
+                    <h3>{{ movie.title }}</h3>
+                </div>
+            {% endfor %}
+            {% if similar_movies|length == 0 %}
+                <p>No recommendations available at this time.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

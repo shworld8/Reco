@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'about.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="aboutme">
+        <h1>Made by Johan Ruau</h1>
+        <h2>Engineering studuent at UCSB</h2>
+        <p>CA.</p>
+    </div>
+{% endblock %}
+

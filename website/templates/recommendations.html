@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'recommendations.css' %}">
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="recommendations-page">
+    <h1>Hi, I'm Reco AI assistant</h1>
+    <h2>Let me help you find the perfect match for you</h2>
+    <p>Tell me how you feel and I'll do my best to find the right film or book for you</p>
+
+    <div class="form-group">
+        <form method="post" action="{% url 'recommendations' %}">
+            {% csrf_token %}
+            <input type="text" class="form-control" name="user_input" placeholder="Type your question here...">
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+
+    <div class="response">
+        {% if chatbot_response %}
+            <div class="chatbot-response">
+                <h3>Gemini :</h3>
+                <p>{{ chatbot_response|safe }}</p>
+            </div>
+        {% else %}
+            <p class="no-response">No response yet. Ask something above!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
